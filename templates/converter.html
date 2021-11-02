@@ -1,0 +1,40 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+
+
+
+{%- block styles %}
+{{ super() }}
+<link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
+{% endblock %}
+
+
+{% block title %}
+    Excel to txt converter
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h3>Excel to txt converter</h3>
+        <hr>
+
+        <form action="{{url_for('converter')}}" enctype="multipart/form-data" method="POST" class="form" style="background-color: lightgray;
+    padding: 10px;">
+            {{ wtf.form_field(form.document_excel, class = 'form-control-file')}}
+            <input class="btn btn-primary" type="submit">
+
+
+        <p></p>
+
+
+        {{ form.csrf_token }}
+        {{ form.submit }}
+        <!-- Конец формы -->
+        </form>
+    </div>
+
+
+{% endblock %}
